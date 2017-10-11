@@ -1,0 +1,85 @@
+
+texturePack1.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+explosion64bw
+  rotate: false
+  xy: 0, 0
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+
+texturePack2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+explosion64
+  rotate: false
+  xy: 0, 0
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+
+texturePack3.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+healthbars3
+  rotate: false
+  xy: 0, 0
+  size: 320, 70
+  orig: 320, 70
+  offset: 0, 0
+  index: -1
+powerUps
+  rotate: false
+  xy: 0, 72
+  size: 265, 32
+  orig: 265, 32
+  offset: 0, 0
+  index: -1
+joystick
+  rotate: false
+  xy: 0, 106
+  size: 200, 250
+  orig: 200, 250
+  offset: 0, 0
+  index: -1
+ship64
+  rotate: false
+  xy: 322, 0
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+asteroid64
+  rotate: false
+  xy: 388, 0
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+alien64
+  rotate: false
+  xy: 0, 358
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+shots
+  rotate: false
+  xy: 454, 0
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+star8
+  rotate: false
+  xy: 488, 0
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
