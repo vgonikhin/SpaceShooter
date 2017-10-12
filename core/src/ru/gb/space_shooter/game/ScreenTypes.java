@@ -1,5 +1,5 @@
 package ru.gb.space_shooter.game;
 
-public enum ScreenTypes {
+enum ScreenTypes {
     MENU, GAME, HISCORE
 }

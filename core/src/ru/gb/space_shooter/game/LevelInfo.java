@@ -1,6 +1,6 @@
 package ru.gb.space_shooter.game;
 
-public class LevelInfo {
+class LevelInfo {
     private int level;
     private float asteroidGenerationTime;
     private float botGenerationTime;
@@ -13,11 +13,11 @@ public class LevelInfo {
         return level;
     }
 
-    public float getAsteroidGenerationTime() {
+    float getAsteroidGenerationTime() {
         return asteroidGenerationTime;
     }
 
-    public float getBotGenerationTime() {
+    float getBotGenerationTime() {
         return botGenerationTime;
     }
 
@@ -29,15 +29,15 @@ public class LevelInfo {
         return asteroidHpMax;
     }
 
-    public float getAsteroidSpeedMin() {
+    float getAsteroidSpeedMin() {
         return asteroidSpeedMin;
     }
 
-    public float getAsteroidSpeedMax() {
+    float getAsteroidSpeedMax() {
         return asteroidSpeedMax;
     }
 
-    public LevelInfo(int level, float asteroidGenerationTime, float botGenerationTime,int asteroidHpMin, int asteroidHpMax, float asteroidSpeedMin, float asteroidSpeedMax) {
+    LevelInfo(int level, float asteroidGenerationTime, float botGenerationTime,int asteroidHpMin, int asteroidHpMax, float asteroidSpeedMin, float asteroidSpeedMax) {
         this.level = level;
         this.asteroidGenerationTime = asteroidGenerationTime;
         this.botGenerationTime = botGenerationTime;

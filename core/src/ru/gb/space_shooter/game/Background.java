@@ -44,23 +44,13 @@ class Background {
             textureStar = ta.findRegion("star8");
         }
         stars = new Star[100];
-        for (int i = 0; i < stars.length; i++) {
-            stars[i] = new Star();
-        }
+        for (int i = 0; i < stars.length; i++) stars[i] = new Star();
     }
 
     public void render(ScreenTypes type,SpriteBatch batch){
         batch.draw(textureBG,0,0);
-        if(type==ScreenTypes.GAME) {
-            for (int i = 0; i < stars.length; i++) {
-                batch.draw(textureStar, stars[i].coord.x, stars[i].coord.y, textureStar.getRegionWidth() / 2, textureStar.getRegionHeight() / 2, textureStar.getRegionWidth(), textureStar.getRegionHeight(), stars[i].scale, stars[i].scale, 0);
-            }
-        }
+        if(type==ScreenTypes.GAME) for (int i = 0; i < stars.length; i++) batch.draw(textureStar, stars[i].coord.x, stars[i].coord.y, textureStar.getRegionWidth() / 2, textureStar.getRegionHeight() / 2, textureStar.getRegionWidth(), textureStar.getRegionHeight(), stars[i].scale, stars[i].scale, 0);
     }
 
-    public void update (float dt, Vector2 v){
-        for (Star s : stars){
-            s.update(dt,v);
-        }
-    }
+    public void update (float dt, Vector2 v){ for (int i = 0; i < stars.length; i++) stars[i].update(dt,v); }
 }

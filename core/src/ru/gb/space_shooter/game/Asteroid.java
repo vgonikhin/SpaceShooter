@@ -8,11 +8,9 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
 import static ru.gb.space_shooter.game.GameClass.*;
-import static ru.gb.space_shooter.game.GameScreen.*;
+import static ru.gb.space_shooter.game.GameScreen.ASTEROID_SIZE;
 
 class Asteroid extends SpaceObject implements Poolable {
-    private final float MIN_SPEED = 100f;
-    private final float MAX_SPEED = 300f;
 
     private float scale;
     private int angle;
@@ -37,8 +35,8 @@ class Asteroid extends SpaceObject implements Poolable {
         this.game = game;
         float x = MathUtils.random(1,1.5f)* SCREEN_WIDTH;
         float y = MathUtils.random()*SCREEN_HEIGHT;
-        float vx = MathUtils.random(MIN_SPEED,MAX_SPEED);
-        float vy = MathUtils.random(-MAX_SPEED,MAX_SPEED);
+        float vx = MathUtils.random(game.levels.get(game.lh.getCurrentLevel()).getAsteroidSpeedMin(),game.levels.get(game.lh.getCurrentLevel()).getAsteroidSpeedMax());
+        float vy = MathUtils.random(-game.levels.get(game.lh.getCurrentLevel()).getAsteroidSpeedMax(),game.levels.get(game.lh.getCurrentLevel()).getAsteroidSpeedMax());
 
         this.coord.x = x;
         this.coord.y = y;
@@ -64,18 +62,14 @@ class Asteroid extends SpaceObject implements Poolable {
     }
 
     @Override
-    public void render(SpriteBatch batch){
-        batch.draw(textureAsteroid, coord.x, coord.y,ASTEROID_SIZE/2,ASTEROID_SIZE/2,ASTEROID_SIZE,ASTEROID_SIZE,scale,scale,angle);
-    }
+    public void render(SpriteBatch batch){ batch.draw(textureAsteroid, coord.x, coord.y,ASTEROID_SIZE/2,ASTEROID_SIZE/2,ASTEROID_SIZE,ASTEROID_SIZE,scale,scale,angle); }
 
     @Override
     public void update(float dt){
         v.set(game.player.getSpeed().x+16.0f*speed.x,0.5f*game.player.getSpeed().y+16.0f*speed.y);
         coord.mulAdd(v,-0.06f*dt);
         angle += speed.x*dt*rotation;
-        if(angle==-360||angle==360)
-            angle = 0;
-
+        if(angle==-360||angle==360) angle = 0;
         if(coord.y>(SCREEN_HEIGHT - ASTEROID_SIZE*scale -(ASTEROID_SIZE/2 - ASTEROID_SIZE*scale/2))){
             coord.y = SCREEN_HEIGHT - ASTEROID_SIZE*scale - (ASTEROID_SIZE/2 - ASTEROID_SIZE*scale/2);
             if(speed.y<0) speed.y*=-1;
@@ -91,7 +85,6 @@ class Asteroid extends SpaceObject implements Poolable {
     public void takeDamage(int dmg) {
         hitArea.setRadius((ASTEROID_SIZE/2)*scale);
         currentHP -= dmg;
-        if((scale -= (float)dmg/2)<0.5f)
-            currentHP=0;
+        if((scale -= (float)dmg/2)<0.5f) currentHP=0;
     }
 }

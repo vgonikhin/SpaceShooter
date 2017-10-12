@@ -4,14 +4,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
 
-public abstract class SpaceObject implements Killable {
+abstract class SpaceObject implements Killable {
     protected GameScreen game;
 
-    protected Vector2 coord;
-    protected Vector2 speed;
-    protected Circle hitArea;
-    protected int currentHP;
-    protected int maxHP;
+    Vector2 coord;
+    Vector2 speed;
+    Circle hitArea;
+    int currentHP;
+    int maxHP;
 
     public abstract void render(SpriteBatch batch);
 
@@ -19,15 +19,15 @@ public abstract class SpaceObject implements Killable {
 
     public abstract void takeDamage(int dmg);
 
-    public Vector2 getSpeed() {
+    Vector2 getSpeed() {
         return speed;
     }
 
-    public Vector2 getCoord() {
+    Vector2 getCoord() {
         return coord;
     }
 
-    public Circle getHitArea() {
+    Circle getHitArea() {
         return hitArea;
     }
 

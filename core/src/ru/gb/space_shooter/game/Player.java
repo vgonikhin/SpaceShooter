@@ -12,7 +12,7 @@ import com.badlogic.gdx.utils.StringBuilder;
 import static ru.gb.space_shooter.game.GameClass.*;
 import static ru.gb.space_shooter.game.GameScreen.*;
 
-public class Player extends Ship {
+class Player extends Ship {
     private TextureRegion shipTexture;
     private int lives;
     private int score;
@@ -21,14 +21,14 @@ public class Player extends Ship {
     private Joystick joystick;
     private HUD hud;
 
-    class HUD {
+    private class HUD {
         private TextureRegion hpBarTexture;
         private TextureRegion greenBarTexture;
         private TextureRegion redBarTexture;
 
         private StringBuilder hudString;
 
-        public HUD (TextureAtlas ta){
+        HUD(TextureAtlas ta){
             this.hpBarTexture = ta.findRegion("healthbars3");
             this.greenBarTexture = new TextureRegion(hpBarTexture,0,0,320,35);
             this.redBarTexture = new TextureRegion(hpBarTexture,0,35,320,35);
@@ -52,7 +52,7 @@ public class Player extends Ship {
     }
 
 
-    public Player(GameScreen game) {
+    Player(GameScreen game) {
         this.game = game;
         this.coord = new Vector2(100, SCREEN_HEIGHT/2);
         this.speed = new Vector2(0,0);
@@ -82,9 +82,7 @@ public class Player extends Ship {
         joystick.update();
         speed.x=0;
         speed.y=0;
-        if(Math.abs(joystick.getPower())>0.1f){
-            speed.mulAdd(joystick.getNormal(),enginePower*joystick.getPower());
-        }
+        if(Math.abs(joystick.getPower())>0.1f) speed.mulAdd(joystick.getNormal(), enginePower * joystick.getPower());
         if(InputHandler.isKeyPressed(Input.Keys.D)||InputHandler.isKeyPressed(Input.Keys.RIGHT)){ speed.x=enginePower;}
 		if(InputHandler.isKeyPressed(Input.Keys.A)||InputHandler.isKeyPressed(Input.Keys.LEFT)){ speed.x=-enginePower;}
 		if(InputHandler.isKeyPressed(Input.Keys.W)||InputHandler.isKeyPressed(Input.Keys.UP)){ speed.y=enginePower;}
@@ -149,15 +147,15 @@ public class Player extends Ship {
         } else if((currentHP -= dmg)>maxHP) currentHP=maxHP;
     }
 
-    public int getLives() {
+    int getLives() {
         return lives;
     }
 
-    public void addScore(int amount){
+    void addScore(int amount){
         score += amount;
     }
 
-    public void addMoney(int amount){
+    void addMoney(int amount){
         money += amount;
     }
 
@@ -165,5 +163,5 @@ public class Player extends Ship {
         return ((float)currentHP/(float)maxHP);
     }
 
-    public int getScore(){ return score; }
+    int getScore(){ return score; }
 }

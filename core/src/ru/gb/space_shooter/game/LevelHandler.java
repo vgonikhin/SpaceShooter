@@ -1,13 +1,13 @@
 package ru.gb.space_shooter.game;
 
-public class LevelHandler {
+class LevelHandler {
     private GameScreen game;
     private float currentTime;
     private float botGenerationTime;
     private float asteroidGenerationTime;
     private int currentLevel;
 
-    public LevelHandler(GameScreen game) {
+    LevelHandler(GameScreen game) {
         this.currentTime = 0.0f;
         this.currentLevel = 1;
         this.game = game;
@@ -27,11 +27,13 @@ public class LevelHandler {
         }
     }
 
-    public void setCurrentLevel(int currentLevel) {
+    void setCurrentLevel(int currentLevel) {
         this.currentLevel = currentLevel;
     }
 
-    public int getCurrentLevel() {
+    int getCurrentLevel() {
         return currentLevel;
     }
+
+
 }

@@ -6,14 +6,14 @@ import com.badlogic.gdx.math.Vector2;
 
 import static ru.gb.space_shooter.game.GameScreen.*;
 
-public class Round implements Poolable{
+class Round implements Poolable{
     private Vector2 coord;
     private Vector2 speed;
     private TextureRegion textureRound;
     private boolean active;
     private int type;
 
-    public Round() {
+    Round() {
         this.coord = new Vector2(0,0);
         this.speed = new Vector2(0,0);
         this.active = false;
@@ -29,26 +29,24 @@ public class Round implements Poolable{
         return this.active;
     }
 
-    public int getType() {
+    int getType() {
         return type;
     }
 
-    public void render(SpriteBatch batch){
-                batch.draw(textureRound, coord.x, coord.y,ROUND_WIDTH/2,ROUND_HEIGHT/2,ROUND_WIDTH,ROUND_HEIGHT,1,1,0);
-    }
+    public void render(SpriteBatch batch){ batch.draw(textureRound, coord.x, coord.y,ROUND_WIDTH/2,ROUND_HEIGHT/2,ROUND_WIDTH,ROUND_HEIGHT,1,1,0); }
 
     public Vector2 update(float dt){
         return coord.mulAdd(speed,dt);
     }
 
-    public void setCoordAndSpeed(Vector2 coord,Vector2 speed,int type,TextureRegion textureRound) {
+    void setCoordAndSpeed(Vector2 coord, Vector2 speed, int type, TextureRegion textureRound) {
         this.coord = coord;
         this.speed = speed;
         this.type = type;
         this.textureRound = textureRound;
     }
 
-    public Vector2 getCoord() {
+    Vector2 getCoord() {
         return coord;
     }
 }

@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
-public class Boom {
+class Boom {
     private TextureRegion[] frames;
     private TextureRegion[] framesbw;
     private Vector2 position;
@@ -19,7 +19,7 @@ public class Boom {
         return active;
     }
 
-    public Boom(TextureRegion[] frames,TextureRegion[] framesbw) {
+    Boom(TextureRegion[] frames,TextureRegion[] framesbw) {
         this.frames = frames;
         this.framesbw = framesbw;
         this.position = new Vector2(0, 0);
@@ -29,20 +29,16 @@ public class Boom {
     }
 
     public void render(SpriteBatch batch) {
-        if(type==1)
-            batch.draw(frames[(int) (time / timePerFrame)], position.x - 32, position.y - 32, 32, 32, 64, 64, 2.0f, 2.0f, angle);
-        else if(type==0)
-            batch.draw(framesbw[(int) (time / timePerFrame)], position.x - 32, position.y - 32, 32, 32, 64, 64, 2.0f, 2.0f, angle);
+        if(type==1) batch.draw(frames[(int) (time / timePerFrame)], position.x - 32, position.y - 32, 32, 32, 64, 64, 2.0f, 2.0f, angle);
+        else if(type==0) batch.draw(framesbw[(int) (time / timePerFrame)], position.x - 32, position.y - 32, 32, 32, 64, 64, 2.0f, 2.0f, angle);
     }
 
     public void update(float dt) {
         time += dt;
-        if (time > maxFrames * timePerFrame) {
-            active = false;
-        }
+        if (time > maxFrames * timePerFrame) active = false;
     }
 
-    public void activate(Vector2 position, int type) {
+    void activate(Vector2 position, int type) {
         this.active = true;
         this.time = 0.0f;
         this.position.set(position);

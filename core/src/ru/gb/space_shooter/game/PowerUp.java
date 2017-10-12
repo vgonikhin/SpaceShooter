@@ -6,12 +6,10 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
-public class PowerUp implements Poolable {
+class PowerUp implements Poolable {
     enum Type{
         MONEY10(0),MONEY25(1),MONEY50(2),MEDKIT(3);
-
         private int number;
-
         Type(int number){
             this.number = number;
         }
@@ -25,7 +23,7 @@ public class PowerUp implements Poolable {
     private TextureRegion[][] textureRegion;
     private Type type;
 
-    public PowerUp() {
+    PowerUp() {
         this.coord = new Vector2(0,0);
         this.speed = new Vector2(0,0);
         this.active = false;
@@ -50,15 +48,14 @@ public class PowerUp implements Poolable {
     public void update(float dt, Vector2 v){
         time+=dt;
         coord.mulAdd(new Vector2(v.x+16.0f*speed.x,0.5f*v.y+16.0f*speed.y),-0.06f*dt);
-        if(time>maxTime)
-            this.setActive(false);
+        if(time>maxTime) this.setActive(false);
     }
 
     public void render(SpriteBatch batch){
         batch.draw(textureRegion[0][type.number],coord.x-16,coord.y-16);
     }
 
-    public void activate(Vector2 coord, Type type){
+    void activate(Vector2 coord, Type type){
         this.coord.set(coord);
         this.speed.x = MathUtils.random(40.0f,60.0f);
         this.speed.y = MathUtils.random(-30.0f,30.0f);
@@ -67,11 +64,11 @@ public class PowerUp implements Poolable {
         this.setActive(true);
     }
 
-    public Vector2 getCoord() {
+    Vector2 getCoord() {
         return coord;
     }
 
-    public void use(Player player) {
+    void use(Player player) {
         switch (type){
             case MONEY10:
                 player.addMoney(10);

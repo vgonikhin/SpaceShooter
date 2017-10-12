@@ -6,12 +6,12 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
-public class BoomEmitter {
+class BoomEmitter {
     private Boom[] booms;
     private Sound soundBoom;
     private Vector2 distToPlayer = new Vector2();
 
-    public BoomEmitter() {
+    BoomEmitter() {
         TextureAtlas ta = GameAssets.getInstance().assetManager.get("atlas.pack",TextureAtlas.class);
         TextureRegion textureBoom = ta.findRegion("explosion64");
         TextureRegion textureBoombw = ta.findRegion("explosion64bw");
@@ -27,28 +27,14 @@ public class BoomEmitter {
                 resultbw[n] = regionsbw[i][j];
             }
         }
-        for (int i = 0; i < booms.length; i++) {
-            booms[i] = new Boom(result,resultbw);
-        }
+        for (int i = 0; i < booms.length; i++) booms[i] = new Boom(result, resultbw);
     }
 
-    public void update(float dt) {
-        for (int i = 0; i < booms.length; i++) {
-            if (booms[i].isActive()) {
-                booms[i].update(dt);
-            }
-        }
-    }
+    public void update(float dt) { for (int i = 0; i < booms.length; i++) if (booms[i].isActive()) booms[i].update(dt); }
 
-    public void render(SpriteBatch batch) {
-        for (int i = 0; i < booms.length; i++) {
-            if (booms[i].isActive()) {
-                booms[i].render(batch);
-            }
-        }
-    }
+    public void render(SpriteBatch batch) { for (int i = 0; i < booms.length; i++) if (booms[i].isActive()) booms[i].render(batch); }
 
-    public void setup(Vector2 position, Vector2 playerPosition, int type) {
+    void setup(Vector2 position, Vector2 playerPosition, int type) {
         for (int i = 0; i < booms.length; i++) {
             if (!booms[i].isActive()) {
                 booms[i].activate(position,type);
